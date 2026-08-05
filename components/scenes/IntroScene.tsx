@@ -54,7 +54,7 @@ export function IntroScene() {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-xs text-white/40"
             >
-              turn up your volume for the full experience
+              turn up your volume :)
             </motion.p>
           </motion.div>
         )}

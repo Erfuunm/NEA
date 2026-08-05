@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nastaran ✨ A Small Adventure",
-  description: "A cinematic, interactive invitation for Nastaran.",
+  title: "Nastaran ✨ ",
+  description: "an invitation for Nastaran.",
 };
 
 export default function RootLayout({
