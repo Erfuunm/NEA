@@ -3,15 +3,17 @@ import { STAGE_ORDER } from "@/lib/constants";
 import type { ExperienceState, Stage } from "@/types/experience";
 
 export const useExperienceStore = create<ExperienceState>((set, get) => ({
-  stage: "intro",
+  stage: "cinematic",
   answer: null,
   day: null,
   time: null,
   destination: null,
   muted: false,
   hasStarted: false,
+  cinematicProgress: 0,
 
   setStage: (stage: Stage) => set({ stage }),
+  setCinematicProgress: (progress: number) => set({ cinematicProgress: progress }),
 
   setAnswer: (answer) => set({ answer }),
   setDay: (day) => set({ day }),
@@ -34,11 +36,12 @@ export const useExperienceStore = create<ExperienceState>((set, get) => ({
 
   reset: () =>
     set({
-      stage: "intro",
+      stage: "cinematic",
       answer: null,
       day: null,
       time: null,
       destination: null,
       hasStarted: false,
+      cinematicProgress: 0,
     }),
 }));

@@ -9,11 +9,12 @@ import { SceneContent3D } from "@/components/3d/SceneContent3D";
 
 export function Experience3D() {
   return (
-    <div className="fixed inset-0 -z-10">
+    <div className="fixed inset-0 z-0">
       <Canvas
         gl={{ antialias: true, powerPreference: "high-performance" }}
         dpr={[1, 1.8]}
         camera={{ fov: 45, position: [0, 1.2, 7] }}
+        shadows
       >
         <Suspense fallback={null}>
           <ambientLight intensity={0.4} />

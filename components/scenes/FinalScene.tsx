@@ -1,11 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { OrbDialogue } from "@/components/orb/OrbDialogue";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { useSound } from "@/hooks/useSound";
 import { DESTINATIONS, ORB_DIALOGUE, TIMES_OF_DAY, WEEKDAYS } from "@/lib/constants";
 import { useExperienceStore } from "@/lib/store";
+
+const RobotPortrait = dynamic(() => import("@/components/3d/RobotMesh").then((mod) => mod.RobotPortrait), { ssr: false });
 
 export function FinalScene() {
   const day = useExperienceStore((s) => s.day);
@@ -19,8 +22,11 @@ export function FinalScene() {
   const destinationConfig = DESTINATIONS.find((d) => d.id === destination);
 
   return (
-    <div className="pointer-events-auto flex min-h-screen flex-col items-center justify-center gap-10 px-6">
-      <OrbDialogue lines={ORB_DIALOGUE.final} />
+    <div className="pointer-events-auto flex min-h-svh flex-col items-center justify-center gap-6 px-4 pb-8 pt-10">
+      <RobotPortrait className="max-h-[min(28svh,220px)]" />
+      <div className="mt-2 w-full max-w-xl px-2">
+        <OrbDialogue lines={ORB_DIALOGUE.final} />
+      </div>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}

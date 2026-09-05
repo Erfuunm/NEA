@@ -6,6 +6,7 @@ import type {
 } from "@/types/experience";
 
 export const STAGE_ORDER: Stage[] = [
+  "cinematic",
   "intro",
   "invite",
   "day",
@@ -100,7 +101,7 @@ export const DESTINATIONS: DestinationConfig[] = [
 
 export const ORB_DIALOGUE = {
   intro: [
-    "Hello Nastaran ✨",
+    "Hello Unknown ✨",
     "I've been waiting for you.",
     "I have something special to ask...",
   ],
@@ -118,9 +119,9 @@ export const ORB_DIALOGUE = {
     "Maybe another time 😊",
     "Let's keep exploring, just for fun.",
   ],
-  day: ["When should our little adventure happen?", "Pick a floating island."],
+  day: ["When should our little adventure happen?", "Walk to the island that calls to you."],
   time: ["Perfect. Now... what time feels right?"],
   destination: ["Last thing — where should we go?"],
   final: ["So...", "Our adventure begins..."],
-  ending: ["Can't wait to see you, Nastaran ❤️"],
+  ending: ["Can't wait to see you, Unknown ❤️"],
 };

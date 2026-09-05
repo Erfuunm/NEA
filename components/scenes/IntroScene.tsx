@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { OrbDialogue } from "@/components/orb/OrbDialogue";
 import { GlowButton } from "@/components/ui/GlowButton";
@@ -9,13 +10,15 @@ import { useSound } from "@/hooks/useSound";
 import { ORB_DIALOGUE } from "@/lib/constants";
 import { useExperienceStore } from "@/lib/store";
 
+const RobotPortrait = dynamic(() => import("@/components/3d/RobotMesh").then((mod) => mod.RobotPortrait), { ssr: false });
+
 export function IntroScene() {
   const start = useExperienceStore((s) => s.start);
   const [dialogueDone, setDialogueDone] = useState(false);
   const sound = useSound();
 
   return (
-    <div className="pointer-events-auto flex min-h-screen flex-col items-center justify-center gap-10 px-6">
+    <div className="pointer-events-auto flex min-h-svh flex-col items-center justify-center gap-5 px-4 pb-8 pt-10">
       <motion.p
         initial={{ opacity: 0, letterSpacing: "0.5em" }}
         animate={{ opacity: 1, letterSpacing: "0.35em" }}
@@ -25,10 +28,13 @@ export function IntroScene() {
         a tiny magical world, just for you
       </motion.p>
 
-      <OrbDialogue
-        lines={ORB_DIALOGUE.intro}
-        onAllDone={() => setDialogueDone(true)}
-      />
+      <RobotPortrait className="max-h-[min(28svh,220px)]" />
+      <div className="mt-2 w-full max-w-xl px-2">
+        <OrbDialogue
+          lines={ORB_DIALOGUE.intro}
+          onAllDone={() => setDialogueDone(true)}
+        />
+      </div>
 
       <AnimatePresence>
         {dialogueDone && (

@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { AmbientAudio } from "@/components/AmbientAudio";
+import { CinematicScene } from "@/components/scenes/CinematicScene";
 import { DaySelectScene } from "@/components/scenes/DaySelectScene";
 import { DestinationScene } from "@/components/scenes/DestinationScene";
 import { EndingScene } from "@/components/scenes/EndingScene";
@@ -31,6 +32,8 @@ export default function Home() {
       <ProgressEnergy />
       <BackButton />
       <MuteButton />
+
+      {stage === "cinematic" && <CinematicScene />}
 
       <AnimatePresence mode="wait">
         <motion.div

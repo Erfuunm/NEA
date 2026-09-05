@@ -143,20 +143,25 @@ function MeteorStreak({ meteor }: { meteor: Meteor }) {
 
 export function Background() {
   const answer = useExperienceStore((s) => s.answer);
+  const stage = useExperienceStore((s) => s.stage);
+  const cinematicProgress = useExperienceStore((s) => s.cinematicProgress);
   const sparkleColor = answer === "yes" ? "#ffd27a" : "#9fd8ff";
+  const isCinematic = stage === "cinematic";
+  const warp = Math.min(1, cinematicProgress * 1.2);
+  const starSpeed = isCinematic ? 0.4 + warp * 18 : 0.4;
 
   return (
     <>
       <color attach="background" args={["#03040a"]} />
-      <fog attach="fog" args={["#03040a", 8, 30]} />
+      <fog attach="fog" args={["#03040a", 8 + warp * 60, 30 + warp * 120]} />
       <Stars
         radius={60}
-        depth={40}
-        count={3000}
-        factor={2.2}
+        depth={isCinematic ? 80 : 40}
+        count={isCinematic ? 6000 : 3000}
+        factor={isCinematic ? 4 : 2.2}
         saturation={0}
         fade
-        speed={0.4}
+        speed={starSpeed}
       />
       <ShootingStars />
       <Fireflies />

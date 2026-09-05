@@ -3,12 +3,15 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { OrbDialogue } from "@/components/orb/OrbDialogue";
+import dynamic from "next/dynamic";
 import { ChoiceCard } from "@/components/ui/ChoiceCard";
 import { GlowButton } from "@/components/ui/GlowButton";
 import { useSound } from "@/hooks/useSound";
 import { ORB_DIALOGUE } from "@/lib/constants";
 import { useExperienceStore } from "@/lib/store";
 import type { InviteAnswer } from "@/types/experience";
+
+const RobotPortrait = dynamic(() => import("@/components/3d/RobotMesh").then((mod) => mod.RobotPortrait), { ssr: false });
 
 const REACTION_LINES: Record<InviteAnswer, string[]> = {
   yes: ORB_DIALOGUE.inviteYes,
@@ -31,8 +34,11 @@ export function InviteScene() {
   };
 
   return (
-    <div className="pointer-events-auto flex min-h-screen flex-col items-center justify-center gap-10 px-6">
-      <OrbDialogue lines={answer ? REACTION_LINES[answer] : ORB_DIALOGUE.invite} />
+    <div className="pointer-events-auto flex min-h-svh flex-col items-center justify-center gap-6 px-4 pb-8 pt-10">
+      <RobotPortrait className="max-h-[min(28svh,220px)]" />
+      <div className="mt-2 w-full max-w-xl px-2">
+        <OrbDialogue lines={answer ? REACTION_LINES[answer] : ORB_DIALOGUE.invite} />
+      </div>
 
       <AnimatePresence mode="wait">
         {!answer ? (

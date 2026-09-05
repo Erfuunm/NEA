@@ -1,4 +1,5 @@
 export type Stage =
+  | "cinematic"
   | "intro"
   | "invite"
   | "day"
@@ -58,6 +59,7 @@ export interface ExperienceState {
   destination: Destination | null;
   muted: boolean;
   hasStarted: boolean;
+  cinematicProgress: number;
   setStage: (stage: Stage) => void;
   setAnswer: (answer: InviteAnswer) => void;
   setDay: (day: Weekday) => void;
@@ -67,4 +69,5 @@ export interface ExperienceState {
   start: () => void;
   goBack: () => void;
   reset: () => void;
+  setCinematicProgress: (progress: number) => void;
 }
